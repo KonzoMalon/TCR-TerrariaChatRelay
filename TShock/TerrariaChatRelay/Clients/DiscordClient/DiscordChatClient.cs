@@ -13,6 +13,8 @@ using TerrariaChatRelay.Clients.DiscordClient.Helpers;
 using TerrariaChatRelay.Clients.DiscordClient.Services;
 using TerrariaChatRelay.Clients.DiscordClient.Messaging;
 
+bool removePings = false;
+
 namespace TerrariaChatRelay.Clients.DiscordClient
 {
     public class DiscordChatClient : BaseClient
@@ -429,13 +431,16 @@ namespace TerrariaChatRelay.Clients.DiscordClient
 				if (outMsg == "" || outMsg == null)
 					return;
 
-				outMsg = chatParser.RemoveUserMentions(outMsg);
-
-				MessageQueue.QueueMessage(ChannelsToSendTo, new DiscordMessage()
+				if (removePings = false)
+    			{
+    				outMsg = chatParser.RemoveUserMentions(outMsg);
+			else
+   				MessageQueue.QueueMessage(ChannelsToSendTo, new DiscordMessage()
 				{
 					Message = outMsg,
 					Embed = isEmbed
 				});
+			}
 			}
 			catch (Exception e)
 			{
