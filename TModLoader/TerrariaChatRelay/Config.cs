@@ -112,7 +112,7 @@ namespace TerrariaChatRelay
 
 		[DefaultValue(false)]
 		[ReloadRequired]
-		public bool EnableUserAndEveryonePings;
+		public bool EnableUserAndEveryonePings { get; set; }
 
 		[ReloadRequired]
 		public EmbedSettings EmbedSettings { get; set; }
